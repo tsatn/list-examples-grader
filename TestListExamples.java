@@ -11,7 +11,7 @@ public class TestListExamples {
   // Write your grading tests here!
 
   @Test(timeout = 100)
-  public void testMerge(){
+  public void testMerge() {
     List<String> listOne = new ArrayList<>();
     listOne.add("itemA");
     listOne.add("itemB");
@@ -54,6 +54,5 @@ public class TestListExamples {
     }
 
     assertEquals(expected, ListExamples.filter(strList, sc));
-}
-
+  }
 }
