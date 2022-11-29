@@ -1,17 +1,22 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.*;
 
 public class TestListExamples {
-  // @Test(timeout = 100)
-  // public void testTimeout() {
-  //   while(true) {}
-  // }
-  // Write your grading tests here!
 
+  class myChecker implements StringChecker {
+    
+    public boolean checkString(String s) {
+        return s.contains("a");
+    }
+  }
+
+  //test merge 
   @Test(timeout = 100)
-  public void testMerge() {
+  public void testBasicMerge() {
+
     List<String> listOne = new ArrayList<>();
     listOne.add("itemA");
     listOne.add("itemB");
@@ -25,30 +30,47 @@ public class TestListExamples {
     expected.add("itemB");
     expected.add("itemC");
     expected.add("itemD");
-    List<String> output = ListExamples.merge(listOne, listTwo);
-    assertArrayEquals(expected.toArray(), output.toArray());
-  }
 
-  class Checker implements StringChecker {
-    public boolean checkString(String s) {
-        return s.contains("a");
-    }
+    List<String> realOutput = ListExamples.merge(listOne, listTwo);
+    assertArrayEquals(expected.toArray(), realOutput.toArray());
   }
+  
+  //test merge 
+  @Test(timeout=100)
+  public void testMergeArray() {
 
+    List<String> arr1 = new ArrayList<String>(Arrays.asList("berrie", "milk"));
+    List<String> arr2 = new ArrayList<String>(Arrays.asList("salt", "chocolate"));
+    List<String> mergedArr = new ArrayList<String>(Arrays.asList("berrie", "milk", "salt", "chocolate"));
+    
+    assertEquals(mergedArr, ListExamples.merge(arr1, arr2));
+  }
+  
+  //test merge 
+  @Test(timeout = 100)
+	public void testMergeEmptyInputs() {
+  
+		ArrayList<String> emptyArrOne = new ArrayList<>();
+		ArrayList<String> emptyArrTwo = new ArrayList<>();
+		String[] expected = {};
+
+		assertArrayEquals(expected, ListExamples.merge(emptyArrOne, emptyArrTwo).toArray());
+	}
+
+  //test filter
   @Test(timeout = 100)
   public void testFilter() {
-    StringChecker sc = new Checker();
+
+    StringChecker sc = new myChecker();
 
     List<String> strList = new ArrayList<>();
     List<String> expected = new ArrayList<>();
-
     String[] inputArr = {"apple", "acron", "excluded"};
     String[] filtered = {"apple", "acron"};
     
     for(String s: inputArr) { 
       strList.add(s); 
     }
-
     for(String s: filtered) { 
       expected.add(s); 
     }
