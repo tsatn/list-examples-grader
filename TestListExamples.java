@@ -78,3 +78,4 @@ public class TestListExamples {
     assertEquals(expected, ListExamples.filter(strList, sc));
   }
 }
+
